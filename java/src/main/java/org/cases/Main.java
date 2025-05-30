@@ -1,14 +1,20 @@
 package org.cases;
 
-import org.cases.equals_cases.Equals;
+import org.cases.objects.JumboEnumSet;
+import org.cases.objects.RegularEnumSet;
+
+import java.util.EnumSet;
 
 public class Main {
 
 
     public static void main(String[] args) {
 
-        Equals equals = new Equals();
-        equals.sum();
+        EnumSet<RegularEnumSet> smallSet = EnumSet.allOf(RegularEnumSet.class);
+        EnumSet<JumboEnumSet> largeSet = EnumSet.allOf(JumboEnumSet.class);
+
+        System.out.println("small set: {}" +  smallSet.getClass().getName());
+        System.out.println("large set: {}" + largeSet.getClass().getName());
 
     }
 
