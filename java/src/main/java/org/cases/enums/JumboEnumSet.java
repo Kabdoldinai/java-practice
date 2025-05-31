@@ -1,4 +1,4 @@
-package org.cases.objects;
+package org.cases.enums;
 
 /**
  * return the instance of JumboEnumSet if elements > 64

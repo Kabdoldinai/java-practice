@@ -1,4 +1,4 @@
-package org.cases.objects;
+package org.cases.enums;
 
 /**
  *
