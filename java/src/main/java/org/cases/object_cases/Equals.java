@@ -1,4 +1,4 @@
-package org.cases.equals_cases;
+package org.cases.object_cases;
 
 
 /**
