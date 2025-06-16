@@ -1,6 +1,7 @@
 package org.cases.functional_interfaces;
 
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -29,6 +30,16 @@ public class Filter {
                 .toList();
     }
 
+    /**
+     *
+     * aggregate(numbers, 0, Integer::sum)
+     * aggregate(numbers, Integer.MIN_VALUE, Integer::max)
+     * aggregate(numbers, 1, (a, b) -> a * b)
+     */
+    public Integer aggregate(List<Integer> nums, Integer identity, BinaryOperator<Integer> operator) {
+        return nums.stream()
+                .reduce(identity, operator);
+    }
 
 
 
