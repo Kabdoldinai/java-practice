@@ -1,20 +1,14 @@
 package org.cases;
 
-import org.cases.math.MathTasks;
-
-import java.util.Arrays;
+import org.cases.multithreading.HelloFromThreads;
 
 public class Main {
 
-
     public static void main(String[] args) {
-        MathTasks mathTasks = new MathTasks();
 
-        System.out.println(Arrays.toString(mathTasks.generateArrWithRandom(10)));
+        HelloFromThreads helloFromThreads = new HelloFromThreads();
+
+        helloFromThreads.printHelloByFiveThreads();
+
     }
-
-
-
-
-
 }
