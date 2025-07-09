@@ -17,8 +17,9 @@ public class AccountThread implements Runnable {
         for (int i = 0; i < 4000; i++) {
             synchronized (accountFrom) {
                 synchronized (accountTo) {
-                    accountFrom.takeOffMoney(money);
-                    accountTo.addMoney(money);
+                    if(accountFrom.takeOffMoney(money)) {
+                        accountTo.addMoney(money);
+                    }
                 }
             }
         }
