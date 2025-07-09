@@ -8,6 +8,7 @@ public class Main {
 
         MachineService machineService = new MachineService();
         machineService.runProductionShift(8, 5);
+        machineService.runProductionShiftWithCountDownLatch(8, 5);
 
     }
 }
