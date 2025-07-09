@@ -1,17 +1,25 @@
 package org.cases;
 
-import org.cases.multithreading.tinkoff.Leg;
+import org.cases.multithreading.tinkoff.Account;
+import org.cases.multithreading.tinkoff.AccountThread;
 
 import java.util.concurrent.CompletableFuture;
 
 public class Main {
 
-
-
     public static void main(String[] args) {
+        Account firstAccount = new Account(100_000);
+        Account secondAccount = new Account(100_000);
+
+        AccountThread firstThread = new AccountThread(firstAccount, secondAccount, 100);
+        AccountThread secondThread = new AccountThread(secondAccount, firstAccount, 100);
+
         CompletableFuture.allOf(
-                CompletableFuture.runAsync(new Leg("left", true)),
-                CompletableFuture.runAsync(new Leg("right", false))
+                CompletableFuture.runAsync(firstThread),
+                CompletableFuture.runAsync(secondThread)
         ).join();
+
+        System.out.println("Cash balance of the first account: " + firstAccount.getCacheBalance());
+        System.out.println("Cash balance of the second account: " + secondAccount.getCacheBalance());
     }
 }
