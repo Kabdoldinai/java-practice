@@ -9,11 +9,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Object lock = new Object();
-
         CompletableFuture.allOf(
-                CompletableFuture.runAsync(new Leg("left", lock, true)),
-                CompletableFuture.runAsync(new Leg("right", lock, false))
+                CompletableFuture.runAsync(new Leg("left", true)),
+                CompletableFuture.runAsync(new Leg("right", false))
         ).join();
     }
 }

@@ -1,16 +1,20 @@
 package org.cases.multithreading.tinkoff;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Leg implements Runnable {
 
     private final String name;
-    private final Object lock;
     private boolean left;
-    private static boolean leftStep = true;
     private int count = 0;
+    private static final Lock lock = new ReentrantLock();
+    private static final Condition rightStepCondition = lock.newCondition();
+    private static boolean leftStep = true;
 
-    public Leg(String name, Object lock, boolean left) {
+    public Leg(String name, boolean left) {
         this.name = name;
-        this.lock = lock;
         this.left = left;
     }
 
@@ -18,22 +22,22 @@ public class Leg implements Runnable {
     public void run() {
 
         while (count < 5) {
-            synchronized (lock) {
+            lock.lock();
+            try {
                 while (leftStep != left) {
-                    try {
-                        lock.wait();
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        return;
-                    }
+                    rightStepCondition.await();
                 }
-
                 System.out.println(name);
-
                 leftStep = !leftStep;
-                lock.notifyAll();
-                count++;
+                rightStepCondition.signalAll();
+
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                lock.unlock();
             }
+
+            count++;
         }
     }
 
