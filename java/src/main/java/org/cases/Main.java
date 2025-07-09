@@ -8,8 +8,8 @@ import java.util.concurrent.CompletableFuture;
 public class Main {
 
     public static void main(String[] args) {
-        Account firstAccount = new Account(100_000);
-        Account secondAccount = new Account(100_000);
+        Account firstAccount = new Account(1,100_000);
+        Account secondAccount = new Account(2,100_000);
 
         AccountThread firstThread = new AccountThread(firstAccount, secondAccount, 100);
         AccountThread secondThread = new AccountThread(secondAccount, firstAccount, 100);

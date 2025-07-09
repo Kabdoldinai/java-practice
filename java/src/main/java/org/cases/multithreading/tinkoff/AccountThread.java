@@ -15,8 +15,11 @@ public class AccountThread implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < 4000; i++) {
-            synchronized (accountFrom) {
-                synchronized (accountTo) {
+            Account first = accountFrom.getId() < accountTo.getId() ? accountFrom : accountTo;
+            Account second = accountFrom.getId() < accountTo.getId() ? accountTo : accountFrom;
+
+            synchronized (first) {
+                synchronized (second) {
                     if(accountFrom.takeOffMoney(money)) {
                         accountTo.addMoney(money);
                     }

@@ -3,8 +3,10 @@ package org.cases.multithreading.tinkoff;
 public class Account {
 
     private int cacheBalance;
+    private int id;
 
-    public Account(int cacheBalance) {
+    public Account(int id, int cacheBalance) {
+        this.id = id;
         this.cacheBalance = cacheBalance;
     }
 
@@ -18,6 +20,10 @@ public class Account {
             return true;
         }
         return false;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getCacheBalance() {
