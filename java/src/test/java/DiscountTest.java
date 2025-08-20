@@ -1,4 +1,3 @@
-import org.cases.Main;
 import org.cases.shopp.ShopSolution;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -6,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class DiscountTest {
-
-
+class DiscountTest {
 
     @Test
     void shouldReturnBucketWithFinalPriceWhenGivenClientIdAndBucket() {

@@ -83,12 +83,11 @@ public class ShopSolution {
     public Bucket countDiscount(Long clientId, Bucket bucket) {
         // todo handle error responses
         var discountPercent = getDiscountPercentByClientId(clientId);
-        //
 
         for (Order order : bucket.getOrder()) {
 
             // min price /
-            // refactor
+            // todo  refactor
             var discount = (order.getPrice().multiply(BigDecimal.valueOf(discountPercent)))
                     .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
             // validate for finalPrice - > inform external service of discount count fail
